@@ -4,10 +4,11 @@ import numpy as np
 
 kalman_filter = Kalman_Filter.KalmanFilter()
 
-a = np.eye(2 * 4, 1)
-for i in range(8):
-    a[i] = i
+mean, covariance = kalman_filter.initiate((1,2,1,1))
 
-print(kalman_filter._motion_mat)
-print(kalman_filter._motion_mat * a)
-print(np.matmul(kalman_filter._motion_mat, a))
+print(mean)
+print(covariance)
+
+mean, covariance = kalman_filter.predict(mean, covariance)
+print(mean)
+print(covariance)
