@@ -64,10 +64,10 @@ class Track:
         self.age = 1
         self.time_since_update = 1
         self.state = TrackState.Tentative
-        self.feature = []
+        self.features = []
 
         if feature is not None:
-            self.feature.append(feature)
+            self.features.append(feature)
 
         self.n_init = n_init
         self.max_age = max_age
@@ -125,9 +125,9 @@ class Track:
             The associated detection.
         """
         measurement = detection.to_xyah()
-        self.mean, self.covariance = kf.predict(self.mean, self.covariance, measurement)
+        self.mean, self.covariance = kf.update(self.mean, self.covariance, measurement)
 
-        self.feature.append(detection.feature)
+        self.features.append(detection.feature)
 
         # increase when we update
         self.hits += 1

@@ -20,7 +20,7 @@ chi2inv95 = {
     7: 14.067,
     8: 15.507,
     9: 16.919}
-    
+
 
 class KalmanFilter(object):
     """
@@ -97,7 +97,6 @@ class KalmanFilter(object):
         covariance = np.diag(np.square(std))
 
         return mean, covariance
-
 
     def predict(self, mean, covariance):
         """Run Kalman filter prediction step.
